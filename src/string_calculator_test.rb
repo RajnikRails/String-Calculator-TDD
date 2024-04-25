@@ -88,5 +88,14 @@ describe StringCalculator do
       result_value = @string_calculator.add(input_value)
       assert_equal expected_value, result_value
     end    
+
+    it "should return the addition of numbers with entered delimiter like '//[delimiter]\\n[numbers...]' and delimiter length is unlimited" do
+      delimiter = "***"
+      string_numbers = "1#{delimiter}2#{delimiter}3"
+      input_value = "//[#{delimiter}]\n#{string_numbers}"
+      expected_value = get_sum_from_string_arr(string_numbers.split(delimiter))
+      result_value = @string_calculator.add(input_value)
+      assert_equal expected_value, result_value
+    end
   end
 end
