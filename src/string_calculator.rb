@@ -6,8 +6,13 @@ class StringCalculator
     delimiter = ","
    
     if numbers.start_with?("//")
-      delimiter = numbers[2]
-      numbers = numbers[4..]
+      if numbers.include?("[") && numbers.include?("]")
+        delimiter = numbers[/\[(.*?)\]/, 1]
+        numbers = numbers[numbers.index("\n") + 1..]
+      else
+        delimiter = numbers[2]
+        numbers = numbers[4..]
+      end
     end
   
     numbers_arr = numbers.split(delimiter).reduce([]) do |arr, curr_str_no|
