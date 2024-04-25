@@ -108,5 +108,16 @@ describe StringCalculator do
       result_value = @string_calculator.add(input_value)
       _(result_value).must_equal expected_value
     end
+
+    it 'should return addition of even indices if string starts with "1//"' do
+      delimiter = '***'
+      string_numbers = "1#{delimiter}2#{delimiter}3#{delimiter}"
+      input_value = "1//#{delimiter}\n#{string_numbers}"
+      expected_value = string_numbers.split(delimiter).map(&:to_i).each_with_index.reduce(0) do |sum, (curr_str_no, curr_idx)|
+        curr_idx.even? ? sum + curr_str_no : sum
+      end
+      result_value = @string_calculator.add(input_value)
+      _(result_value).must_equal expected_value
+    end
   end
 end
