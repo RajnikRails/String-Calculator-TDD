@@ -10,6 +10,14 @@ The string calculator can add numbers provided as strings, including support for
 
 To use this calculator, you need to have Ruby installed on your system. Clone this repository to your local machine.
 
+## Running Tests
+
+To run the tests, execute the following command in your terminal:
+
+```ruby
+ruby test_string_calculator.rb
+```
+
 # Examples
 
 # Do addition of all numbers
