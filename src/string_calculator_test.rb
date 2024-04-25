@@ -51,5 +51,12 @@ describe StringCalculator do
       result_value = @string_calculator.add(input_value)
       assert_equal expected_value, result_value
     end
+
+    it "should throw an error if entered numbers contain one negative number" do
+      input_value = "1,-2"
+      expected_error_message = "Negatives not allowed : -2"
+      result_func = -> { @string_calculator.add(input_value) }
+      assert_raises(RuntimeError, expected_error_message) { result_func.call }
+    end
   end
 end
