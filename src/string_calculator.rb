@@ -3,7 +3,14 @@ class StringCalculator
     return 0 if numbers.empty?
 
     sum = 0
-    numbers_arr = numbers.split(",").reduce([]) do |arr, curr_str_no|
+    delimiter = ","
+   
+    if numbers.start_with?("//")
+      delimiter = numbers[2]
+      numbers = numbers[4..]
+    end
+  
+    numbers_arr = numbers.split(delimiter).reduce([]) do |arr, curr_str_no|
       arr + (curr_str_no.include?("\n") ? curr_str_no.split("\n") : [curr_str_no])
     end
 
