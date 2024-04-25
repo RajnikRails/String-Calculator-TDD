@@ -65,5 +65,12 @@ describe StringCalculator do
       result_func = -> { @string_calculator.add(input_value) }
       assert_raises(RuntimeError, expected_error_message) { result_func.call }
     end
+
+    it "should return the addition of entered numbers that are less than 1000" do
+      input_value = "1,2,3999,5000"
+      expected_value = get_sum_from_string_arr(input_value.split(',').select { |curr_no| curr_no.to_i < 1000 })
+      result_value = @string_calculator.add(input_value)
+      assert_equal expected_value, result_value
+    end    
   end
 end
