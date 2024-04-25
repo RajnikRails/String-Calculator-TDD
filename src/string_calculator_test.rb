@@ -27,5 +27,12 @@ describe StringCalculator do
       result_value = @string_calculator.add(input_value)
       assert_equal expected_value, result_value
     end
+
+    it "should return the addition of entered unlimited numbers separated by a comma" do
+      input_value = "1,2,3,4,5"
+      expected_value = input_value.split(',').map(&:to_i).sum
+      result_value = @string_calculator.add(input_value)
+      assert_equal expected_value, result_value
+    end
   end
 end
