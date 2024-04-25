@@ -4,8 +4,15 @@ class StringCalculator
 
     sum = 0
     delimiter = ","
-   
-    if numbers.start_with?("//")
+
+    if numbers.start_with?("0//") 
+      delimiter = numbers[/\/\/(.*)\n/, 1]
+      numbers = numbers[numbers.index("\n") + 1..]
+      value = numbers.split(delimiter).map(&:to_i).each_with_index.reduce(0) do |sum, (curr_str_no, curr_idx)|
+        curr_idx.odd? ? sum + curr_str_no : sum
+      end
+      return value 
+    elsif numbers.start_with?("//")
       if numbers.include?("[") && numbers.include?("]")
         delimiter = numbers[/\[(.*?)\]/, 1]
         numbers = numbers[numbers.index("\n") + 1..]
