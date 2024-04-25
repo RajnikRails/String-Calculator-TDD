@@ -78,6 +78,15 @@ describe StringCalculator do
       expected_value = get_sum_from_string_arr(input_value.split(/,|\n/))
       result_value = @string_calculator.add(input_value)
       assert_equal expected_value, result_value
+    end   
+    
+    it "should return the addition of numbers with entered delimiter like '//[delimiter]\\n[numbers…]' and delimiter length is 1" do
+      string_numbers = "1;2;3"
+      delimiter = ";"
+      input_value = "//#{delimiter}\n#{string_numbers}"
+      expected_value = get_sum_from_string_arr(string_numbers.split(delimiter))
+      result_value = @string_calculator.add(input_value)
+      assert_equal expected_value, result_value
     end    
   end
 end
