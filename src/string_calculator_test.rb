@@ -34,5 +34,18 @@ describe StringCalculator do
       result_value = @string_calculator.add(input_value)
       assert_equal expected_value, result_value
     end
+
+    it "should return addition of entered numbers along with alphabets(take its position value) separated by ','" do
+      input_value = "1,2,b,4,a"
+      expected_value = input_value.split(',').reduce(0) do |sum, curr_str_no|
+        if curr_str_no.match?(/\D/) # Check if the string contains non-digit characters
+          sum + (curr_str_no.ord - 96) # Convert alphabet to its position value
+        else
+          sum + curr_str_no.to_i
+        end
+      end
+      result_value = @string_calculator.add(input_value)
+      assert_equal expected_value, result_value
+    end    
   end
 end
