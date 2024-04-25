@@ -2,6 +2,14 @@ class StringCalculator
   def add(numbers)
     return 0 if numbers.empty?
 
-    numbers.split(',').map(&:to_i).sum
+    sum = 0
+    numbers.split(',').each do |part|
+      if part.match?(/\D/) 
+        sum += part.ord - 'a'.ord + 1 
+      else
+        sum += part.to_i 
+      end
+    end
+    sum
   end
 end
