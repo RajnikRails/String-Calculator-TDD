@@ -15,5 +15,13 @@ describe StringCalculator do
       result_value = calculator.add(input_value)
       assert_equal expected_value, result_value
     end
+
+    it "should return the addition of two numbers separated by a comma" do
+      calculator = StringCalculator.new
+      input_value = "1,2"
+      expected_value = input_value.split(',').map(&:to_i).sum
+      result_value = calculator.add(input_value)
+      assert_equal expected_value, result_value
+    end
   end
 end
