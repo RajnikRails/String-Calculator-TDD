@@ -71,6 +71,13 @@ describe StringCalculator do
       expected_value = get_sum_from_string_arr(input_value.split(',').select { |curr_no| curr_no.to_i < 1000 })
       result_value = @string_calculator.add(input_value)
       assert_equal expected_value, result_value
+    end
+    
+    it "should return the addition of numbers separated by ',' or '\\n'" do
+      input_value = "1\n2,3"
+      expected_value = get_sum_from_string_arr(input_value.split(/,|\n/))
+      result_value = @string_calculator.add(input_value)
+      assert_equal expected_value, result_value
     end    
   end
 end
